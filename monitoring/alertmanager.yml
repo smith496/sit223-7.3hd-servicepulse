@@ -1,0 +1,9 @@
+route:
+  receiver: local-log
+  group_wait: 1s
+  group_interval: 5s
+  repeat_interval: 1h
+
+receivers:
+  - name: local-log
+

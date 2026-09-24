@@ -1,0 +1,12 @@
+groups:
+  - name: servicepulse-availability
+    rules:
+      - alert: ServicePulseDown
+        expr: up{job="servicepulse"} == 0
+        for: 6s
+        labels:
+          severity: critical
+        annotations:
+          summary: ServicePulse production endpoint is unavailable
+          description: Prometheus has been unable to scrape ServicePulse for more than six seconds.
+
