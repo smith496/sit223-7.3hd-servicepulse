@@ -20,7 +20,7 @@ curl --fail --silent --get "${PROMETHEUS_URL}/api/v1/query" \
   --data-urlencode 'query=servicepulse_http_requests_total' > artifacts/prometheus-metric-query.json
 
 docker stop servicepulse-prod >/dev/null
-sleep 13
+sleep 22
 
 curl --fail --silent --get "${PROMETHEUS_URL}/api/v1/query" \
   --data-urlencode 'query=ALERTS{alertname="ServicePulseDown",alertstate="firing"}' \
@@ -47,4 +47,3 @@ for attempt in {1..20}; do
   fi
   sleep 1
 done
-
