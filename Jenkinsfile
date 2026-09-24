@@ -4,6 +4,7 @@ pipeline {
     options {
         timeout(time: 20, unit: 'MINUTES')
         disableConcurrentBuilds()
+        skipDefaultCheckout()
     }
 
     environment {
@@ -138,7 +139,6 @@ pipeline {
 
     post {
         always {
-            junit allowEmptyResults: true, testResults: 'artifacts/junit.xml'
             archiveArtifacts allowEmptyArchive: true, artifacts: 'artifacts/**, dist/**, source-commit.txt'
             sh 'docker rm -f "$STAGING_CONTAINER" >/dev/null 2>&1 || true'
         }
